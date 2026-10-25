@@ -8,6 +8,7 @@ Free, privacy-conscious pre-appointment facility-fee question generator for Nass
 - Live NPPES NPI Registry lookup by name and Long Island ZIP, via the FairCare server (rate-limited, cached 30 minutes, source and retrieval time shown)
 - Conservative fee-risk guidance based on **user-reported** billing status; every provider's facility-fee status is shown as unknown
 - Hospital price transparency file finder: reads each Long Island health system's CMS-required `cms-hpt.txt` and links to its machine-readable standard-charge files, with file type, size, last-updated date and check time (no prices are parsed or shown)
+- "Get your actual number" guide: asks how the user will pay and points to the tool that gives a personal cost (insurer cost estimator, Medicare Procedure Price Lookup, Medicare Advantage or Medicaid plan, or a No Surprises Act Good Faith Estimate for self-pay). Rules and wording live in `guidance.js`.
 - Copyable billing-department call script and checklist
 - Links to official CMS hospital price transparency and NPPES resources
 

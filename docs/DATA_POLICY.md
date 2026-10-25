@@ -15,6 +15,9 @@
 ## Price rules
 Never convert a chargemaster rate into a personalized cost. Include payer, plan, code, setting, service date, source, and timestamp with any published rate. Separately disclose professional, anesthesia, radiology interpretation and other fees when available. Never promise that absence of a published facility fee means none will be charged.
 
+## Consumer guidance
+`guidance.js` describes federal and New York rights and tools. Each statement must match a current rule, and links must point to stable official pages (or a named nonprofit source labeled as an area estimate). Re-check it whenever CMS, Medicare or New York rules change, and before public launch.
+
 ## Privacy
 The initial lookup sends only facility name and ZIP to the FairCare server, which queries NPPES. The hospital price file check sends no user input; the server refreshes one shared index of hospital websites at most every 12 hours, and filtering by name happens in the browser. Avoid patient names, insurance member IDs, diagnoses, appointment dates, and uploaded bills. Review data retention, logs, hosting and regulatory requirements before accepting sensitive information.
 
