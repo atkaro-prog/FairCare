@@ -16,7 +16,8 @@ export async function lookupNppes({name,zip},fetcher=fetch){
  const base=new URLSearchParams({version:'2.1',limit:'50',postal_code:zip,state:'NY'});
  const q1=new URLSearchParams(base),q2=new URLSearchParams(base);
  q1.set('organization_name',name+'*');q2.set('last_name',name.split(' ').at(-1)+'*');
- const responses=await Promise.all([q1,q2].map(async q=>{const response=await fetcher('https://npiregistry.cms.hhs.gov/api/?'+q,{headers:{accept:'application/json'},signal:AbortSignal.timeout(9000)});if(!response.ok)throw Error('Upstream failed');return response.json()}));
+ const attempts=await Promise.allSettled([q1,q2].map(async q=>{const response=await fetcher('https://npiregistry.cms.hhs.gov/api/?'+q,{headers:{accept:'application/json'},signal:AbortSignal.timeout(9000)});if(!response.ok)throw Error('Upstream failed');return response.json()}));
+ const responses=attempts.filter(x=>x.status==='fulfilled').map(x=>x.value);if(!responses.length)throw Error('NPPES is unavailable');
  const map=new Map();for(const r of responses.flatMap(x=>x.results??[]))map.set(String(r.number),r);
  return normalizeResults([...map.values()],zip).slice(0,50);
 }
